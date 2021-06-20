@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public TextMeshProUGUI gameOverScore;
     private int currentScore;
+    public AudioSource theme;
+    public AudioSource beat;
     void Start()
     {
         StartCoroutine("startGame");    
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         screenText.text = "Falling in 1s";
         yield return new WaitForSeconds(1f);
+        beat.mute = true;
+        beat.playOnAwake = false;
+        theme.Play();
         screenText.enabled = false;
         blockSpawner.startFalling();
         playerMovement.startEngines();
